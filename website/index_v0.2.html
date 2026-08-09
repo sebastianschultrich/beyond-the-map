@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beyond the Map – Latitude Nine North. A long-term project about Expedition Risk Management, overland travel, preparation, systems and the road to Panama.">
+  <meta name="theme-color" content="#061525">
+
+  <title>Beyond the Map · Latitude Nine North</title>
+
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+
+  <style>
+    :root{
+      --navy:#061525;
+      --blue:#0A2239;
+      --blue-2:#102D49;
+      --gold:#D6A33A;
+      --gold-2:#F0B83F;
+      --topo:#5E85A8;
+      --white:#F7F3EA;
+      --muted:#B8C4CF;
+      --line:rgba(247,243,234,.13);
+      --panel:rgba(255,255,255,.035);
+      --shadow:0 24px 80px rgba(0,0,0,.28);
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--white);
+      background:
+        radial-gradient(circle at 22% 8%, rgba(94,133,168,.14), transparent 32%),
+        radial-gradient(circle at 82% 28%, rgba(214,163,58,.08), transparent 28%),
+        linear-gradient(180deg,var(--navy),#07192A 52%,#05111E);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img,svg{display:block;max-width:100%}
+    button,input{font:inherit}
+
+    .shell{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(16px);
+      background:rgba(6,21,37,.78);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:max-content;
+    }
+
+    .brand-mark{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      border:2px solid var(--gold);
+      display:grid;
+      place-items:center;
+      color:var(--gold-2);
+      font-weight:900;
+      font-size:.82rem;
+      letter-spacing:-.05em;
+      background:var(--blue);
+    }
+
+    .brand-copy strong{
+      display:block;
+      font-size:.86rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+
+    .brand-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.72rem;
+      margin-top:-2px;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      color:#D7DFE6;
+      font-size:.86rem;
+    }
+
+    .nav-links a{opacity:.86}
+    .nav-links a:hover{opacity:1;color:var(--gold-2)}
+
+    .hero{
+      min-height:calc(100vh - 72px);
+      display:grid;
+      align-items:center;
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      background:
+        linear-gradient(rgba(94,133,168,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94,133,168,.08) 1px, transparent 1px);
+      background-size:64px 64px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 88%);
+    }
+
+    .hero:after{
+      content:"9°N";
+      position:absolute;
+      right:-.03em;
+      bottom:-.23em;
+      z-index:-1;
+      font-weight:900;
+      letter-spacing:-.08em;
+      font-size:clamp(9rem,29vw,27rem);
+      line-height:1;
+      color:rgba(247,243,234,.018);
+      user-select:none;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.35fr .65fr;
+      align-items:center;
+      gap:72px;
+      padding:92px 0 86px;
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      text-transform:uppercase;
+      font-size:.74rem;
+      font-weight:800;
+      letter-spacing:.22em;
+      color:var(--gold-2);
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:38px;
+      height:1px;
+      background:var(--gold);
+    }
+
+    h1{
+      margin:24px 0 20px;
+      max-width:900px;
+      font-size:clamp(3.5rem,8vw,7.7rem);
+      line-height:.89;
+      letter-spacing:-.065em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    h1 span{
+      display:block;
+      color:transparent;
+      -webkit-text-stroke:1.4px rgba(247,243,234,.56);
+    }
+
+    .hero-lead{
+      max-width:690px;
+      color:#D4DDE5;
+      font-size:clamp(1.06rem,1.7vw,1.34rem);
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:34px;
+    }
+
+    .btn{
+      min-height:48px;
+      padding:0 20px;
+      border:1px solid transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--gold);
+      color:#111A22;
+    }
+
+    .btn-primary:hover{background:var(--gold-2);transform:translateY(-1px)}
+    .btn-ghost{border-color:rgba(247,243,234,.23);color:var(--white)}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold-2)}
+
+    .hero-card{
+      justify-self:end;
+      width:min(100%,360px);
+      aspect-ratio:1;
+      border:1px solid rgba(214,163,58,.22);
+      border-radius:50%;
+      padding:28px;
+      position:relative;
+      display:grid;
+      place-items:center;
+      box-shadow:var(--shadow);
+      background:
+        radial-gradient(circle at center,rgba(94,133,168,.12),transparent 62%),
+        rgba(4,16,29,.54);
+    }
+
+    .hero-card:before,
+    .hero-card:after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      inset:8%;
+      border:1px solid rgba(247,243,234,.07);
+    }
+
+    .hero-card:after{inset:22%}
+
+    .compass{
+      position:relative;
+      width:72%;
+      aspect-ratio:1;
+      border:8px solid var(--gold);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:var(--white);
+      font-size:clamp(2.7rem,5vw,4.8rem);
+      font-weight:900;
+      letter-spacing:-.07em;
+      background:
+        linear-gradient(rgba(94,133,168,.14) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(94,133,168,.14) 1px,transparent 1px),
+        var(--blue);
+      background-size:24px 24px;
+      box-shadow:0 0 0 2px rgba(240,194,90,.36) inset;
+    }
+
+    .compass:before{
+      content:"N";
+      position:absolute;
+      top:-42px;
+      color:var(--gold-2);
+      font-size:1rem;
+      letter-spacing:.08em;
+    }
+
+    .compass:after{
+      content:"";
+      position:absolute;
+      width:6px;
+      height:112%;
+      background:linear-gradient(var(--gold-2),var(--gold),rgba(214,163,58,.34));
+      clip-path:polygon(50% 0,100% 12%,72% 12%,72% 100%,28% 100%,28% 12%,0 12%);
+      z-index:0;
+    }
+
+    .compass span{position:relative;z-index:1;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+
+    section{padding:110px 0;border-bottom:1px solid var(--line)}
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.7fr 1.3fr;
+      gap:60px;
+      margin-bottom:56px;
+      align-items:start;
+    }
+
+    .kicker{
+      color:var(--gold-2);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      font-weight:900;
+    }
+
+    h2{
+      margin:9px 0 0;
+      font-size:clamp(2.3rem,4.8vw,4.8rem);
+      letter-spacing:-.05em;
+      line-height:.98;
+    }
+
+    .section-intro{
+      font-size:1.14rem;
+      color:#CCD6DF;
+      max-width:690px;
+      margin:4px 0 0;
+    }
+
+    .quote{
+      margin-top:28px;
+      border-left:2px solid var(--gold);
+      padding-left:18px;
+      color:var(--white);
+      font-size:1.05rem;
+    }
+
+    .story-grid,
+    .risk-grid,
+    .logbook-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      padding:28px;
+      min-height:220px;
+      transition:.22s ease;
+    }
+
+    .card:hover{
+      border-color:rgba(214,163,58,.38);
+      background:rgba(255,255,255,.05);
+      transform:translateY(-3px);
+    }
+
+    .card-number{
+      color:var(--gold);
+      font-size:.72rem;
+      font-weight:900;
+      letter-spacing:.14em;
+    }
+
+    .card h3{
+      margin:25px 0 10px;
+      font-size:1.22rem;
+      letter-spacing:-.02em;
+    }
+
+    .card p{
+      margin:0;
+      color:#AFBECA;
+      font-size:.95rem;
+    }
+
+    .latitude{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .latitude .route-line{
+      margin-top:50px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      position:relative;
+      gap:0;
+    }
+
+    .latitude .route-line:before{
+      content:"";
+      position:absolute;
+      left:5%;
+      right:5%;
+      top:17px;
+      height:1px;
+      background:linear-gradient(90deg,var(--topo),var(--gold),var(--gold-2));
+    }
+
+    .waypoint{
+      position:relative;
+      padding-top:46px;
+      color:#C2CED8;
+      font-size:.84rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .waypoint:before{
+      content:"";
+      position:absolute;
+      top:10px;
+      left:0;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:var(--navy);
+      border:3px solid var(--gold);
+      z-index:2;
+    }
+
+    .waypoint:last-child:before{background:var(--gold)}
+
+    .risk-grid{grid-template-columns:repeat(4,1fr)}
+    .risk-grid .card{min-height:180px}
+
+    .status{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .status-panel{
+      border:1px solid var(--line);
+      padding:26px 28px;
+      background:linear-gradient(135deg,rgba(94,133,168,.07),rgba(255,255,255,.018));
+    }
+
+    .status-panel strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.78rem;
+      color:var(--gold-2);
+      margin-bottom:9px;
+    }
+
+    .status-panel p{margin:0;color:#B8C4CF}
+
+    .logbook-grid .card{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:270px;
+    }
+
+    .tag{
+      display:inline-flex;
+      width:max-content;
+      padding:5px 8px;
+      border:1px solid rgba(214,163,58,.34);
+      color:var(--gold-2);
+      font-size:.67rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .coming{
+      margin-top:38px;
+      padding:22px 24px;
+      border:1px dashed rgba(247,243,234,.18);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      color:#B9C5CF;
+    }
+
+    .coming strong{color:var(--white)}
+
+    footer{padding:62px 0 48px}
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .footer-title{
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:1rem;
+    }
+
+    .footer-sub{
+      margin-top:8px;
+      color:#8EA0AF;
+      font-size:.88rem;
+    }
+
+    .footer-links{
+      display:flex;
+      justify-content:flex-end;
+      gap:22px;
+      flex-wrap:wrap;
+      color:#AFBBC5;
+      font-size:.84rem;
+    }
+
+    .copyright{
+      margin-top:36px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+      color:#768A9A;
+      font-size:.75rem;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero-grid,.section-head,.footer-grid{grid-template-columns:1fr}
+      .hero-grid{gap:42px}
+      .hero-card{justify-self:start;width:300px}
+      .story-grid,.logbook-grid{grid-template-columns:1fr 1fr}
+      .risk-grid{grid-template-columns:1fr 1fr}
+      .section-head{gap:20px}
+      .footer-links{justify-content:flex-start}
+    }
+
+    @media(max-width:620px){
+      .shell{width:min(calc(100% - 28px),var(--max))}
+      .hero-grid{padding:68px 0}
+      h1{font-size:3.6rem}
+      .hero-card{width:230px}
+      .story-grid,.logbook-grid,.risk-grid,.status{grid-template-columns:1fr}
+      .latitude .route-line{grid-template-columns:1fr;gap:18px}
+      .latitude .route-line:before{
+        left:6px;right:auto;top:0;bottom:0;width:1px;height:auto;
+        background:linear-gradient(var(--topo),var(--gold),var(--gold-2));
+      }
+      .waypoint{padding:0 0 0 36px;min-height:44px}
+      .waypoint:before{left:0;top:3px}
+      section{padding:82px 0}
+      .coming{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Beyond the Map – Startseite">
+        <div class="brand-mark">9°N</div>
+        <div class="brand-copy">
+          <strong>Beyond the Map</strong>
+          <span>Latitude Nine North</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#beyond">Beyond the Map</a>
+        <a href="#latitude">Latitude 9°N</a>
+        <a href="#risk">Risk Management</a>
+        <a href="#logbook">The Logbook</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">Long-term expedition platform</div>
+
+          <h1>
+            Beyond
+            <span>the Map</span>
+          </h1>
+
+          <p class="hero-lead">
+            Preparing for the road long before the first mile.
+            A personal long-term project connecting overland travel,
+            Expedition Risk Management, systems thinking and the route toward Latitude Nine North.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#latitude">Explore the project</a>
+            <a class="btn btn-ghost" href="#risk">Expedition Risk Management</a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <div class="compass"><span>9°N</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beyond">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">01 · Beyond the Map</div>
+            <h2>The journey starts before departure.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              Beyond the Map is not intended to be a conventional travel blog.
+              It documents how a long expedition is built: the decisions, systems,
+              technical preparation, risks, mistakes and lessons that exist long before the road itself.
+            </p>
+
+            <div class="quote">
+              The expedition is not the product. It is the proof of the preparation behind it.
+            </div>
+          </div>
+        </div>
+
+        <div class="story-grid">
+          <article class="card">
+            <div class="card-number">PREPARE</div>
+            <h3>Preparation as part of the story</h3>
+            <p>
+              Vehicle choices, equipment, training, route logic, documentation and contingency planning
+              become part of the expedition rather than invisible work done beforehand.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">UNDERSTAND</div>
+            <h3>Systems instead of checklists</h3>
+            <p>
+              Risk, mobility, logistics and human factors interact. The aim is not simply to carry more gear,
+              but to make better decisions with fewer weak points.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">DOCUMENT</div>
+            <h3>Knowledge that remains useful</h3>
+            <p>
+              Field notes, technical decisions and lessons learned form a growing knowledge base for future
+              expeditions, consulting, audits and practical training.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="latitude" class="latitude">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">02 · Latitude Nine North</div>
+            <h2>A direction, not just a coordinate.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              Latitude Nine North is the long-term expedition project within Beyond the Map.
+              The Panamericana provides the route. Panama provides the geographic horizon.
+              The years of preparation provide the substance.
+            </p>
+          </div>
+        </div>
+
+        <div class="route-line" aria-label="Latitude Nine North project path">
+          <div class="waypoint">Foundation</div>
+          <div class="waypoint">Preparation</div>
+          <div class="waypoint">Panamericana</div>
+          <div class="waypoint">Latitude 9°N</div>
+        </div>
+
+        <div class="status">
+          <div class="status-panel">
+            <strong>Current phase</strong>
+            <p>
+              Building the platform, documenting the planning process and developing the technical
+              and professional foundation behind the expedition.
+            </p>
+          </div>
+
+          <div class="status-panel">
+            <strong>Long-term focus</strong>
+            <p>
+              Overland mobility, expedition systems, Panama, practical risk management and
+              a body of knowledge built through preparation and real-world experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="risk">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">03 · Expedition Risk Management</div>
+            <h2>Preparation with consequence.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              Expedition Risk Management is the professional axis of Beyond the Map.
+              It connects operational planning with practical mobility, logistics, vehicle systems,
+              route decisions and human factors.
+            </p>
+          </div>
+        </div>
+
+        <div class="risk-grid">
+          <article class="card">
+            <div class="card-number">01</div>
+            <h3>Risk</h3>
+            <p>Threats, exposure, consequences and proportionate mitigation.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">02</div>
+            <h3>Mobility</h3>
+            <p>Vehicle capability, limitations, recovery, maintenance and redundancy.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">03</div>
+            <h3>Logistics</h3>
+            <p>Load, supply, documentation, spares, communications and sustainment.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">04</div>
+            <h3>Human Factors</h3>
+            <p>Decision-making, fatigue, skills, routines, judgement and adaptability.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">05</div>
+            <h3>Route</h3>
+            <p>Borders, terrain, infrastructure, seasonal conditions and fallback options.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">06</div>
+            <h3>Contingency</h3>
+            <p>Failure modes, communications, evacuation logic and recovery planning.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">07</div>
+            <h3>Audit</h3>
+            <p>Structured review of systems, procedures, compliance and practical weaknesses.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">08</div>
+            <h3>Lessons Learned</h3>
+            <p>Turning experience, mistakes and evidence into better future decisions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="logbook">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">04 · The Logbook</div>
+            <h2>Notes from the road before the road.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              The Logbook will become the publishing layer of Beyond the Map:
+              personal enough to remain human, structured enough to remain useful.
+            </p>
+          </div>
+        </div>
+
+        <div class="logbook-grid">
+          <article class="card">
+            <div>
+              <span class="tag">Field Notes</span>
+              <h3>Preparation, travel and observation</h3>
+              <p>
+                Shorter personal entries about decisions, training, test trips,
+                equipment, places and what changes along the way.
+              </p>
+            </div>
+            <div class="card-number">PERSONAL / PRACTICAL</div>
+          </article>
+
+          <article class="card">
+            <div>
+              <span class="tag">Risk & Systems</span>
+              <h3>Expedition Risk Management</h3>
+              <p>
+                Deeper articles on planning, systems, vehicle capability,
+                logistics, failure modes and practical risk reduction.
+              </p>
+            </div>
+            <div class="card-number">PROFESSIONAL / ANALYTICAL</div>
+          </article>
+
+          <article class="card">
+            <div>
+              <span class="tag">Latitude 9°N</span>
+              <h3>The long route toward Panama</h3>
+              <p>
+                Vehicle development, the Panamericana, geographic research
+                and the long-term transition from project to expedition.
+              </p>
+            </div>
+            <div class="card-number">EXPEDITION / LONG-TERM</div>
+          </article>
+        </div>
+
+        <div class="coming">
+          <div>
+            <strong>The Logbook is being prepared.</strong><br>
+            Ghost publishing and newsletter integration will follow after the brand and site structure are settled.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Beyond the Map</div>
+          <div class="footer-sub">
+            Latitude Nine North · Expedition Risk Management · The Logbook
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#beyond">About</a>
+          <a href="#latitude">Latitude 9°N</a>
+          <a href="#risk">Risk Management</a>
+         <div class="copyright">
+        <span>© 2026 Sebastian Schultrich</span>
+        <span>schultrich.com</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
