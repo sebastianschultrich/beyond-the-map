@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 256 256"
+     width="256"
+     height="256"
+     role="img"
+     aria-labelledby="title desc">
+
+  <title id="title">Beyond the Map – Latitude Nine North</title>
+  <desc id="desc">
+    Circular navy and gold emblem with 9°N, a central route through Panama
+    and a north arrow.
+  </desc>
+
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#0A2239"/>
+      <stop offset="100%" stop-color="#061525"/>
+    </radialGradient>
+
+    <clipPath id="innerClip">
+      <circle cx="128" cy="128" r="105"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <circle
+    cx="128"
+    cy="128"
+    r="118"
+    fill="url(#bg)"
+    stroke="#D6A33A"
+    stroke-width="12"
+  />
+
+  <!-- Inner gold ring -->
+  <circle
+    cx="128"
+    cy="128"
+    r="106"
+    fill="none"
+    stroke="#F0C25A"
+    stroke-width="3"
+    opacity="0.8"
+  />
+
+  <!-- Grid -->
+  <g
+    clip-path="url(#innerClip)"
+    opacity="0.16"
+    stroke="#7FA3C9"
+    stroke-width="1">
+
+    <path d="M28 96H228"/>
+    <path d="M28 128H228"/>
+    <path d="M28 160H228"/>
+
+    <path d="M88 24V232"/>
+    <path d="M128 24V232"/>
+    <path d="M168 24V232"/>
+  </g>
+
+  <!-- Simplified Americas -->
+  <g
+    clip-path="url(#innerClip)"
+    fill="#365778"
+    opacity="0.95">
+
+    <!-- North America -->
+    <path d="
+      M77 49
+      C85 37 99 31 112 32
+      C120 32 129 35 137 40
+      L128 51
+      L112 54
+      L105 63
+      L95 67
+      L92 80
+      L80 87
+      L72 80
+      L64 67
+      L68 58
+      Z
+    "/>
+
+    <!-- Central America -->
+    <path d="
+      M98 77
+      L107 81
+      L111 91
+      L119 96
+      L122 108
+      L115 119
+      L112 133
+      L105 138
+      L101 151
+      L93 155
+      L89 147
+      L91 134
+      L84 124
+      L87 111
+      L94 104
+      L93 91
+      Z
+    "/>
+
+    <!-- South America -->
+    <path d="
+      M110 145
+      L118 148
+      L124 159
+      L133 168
+      L140 185
+      L135 203
+      L127 212
+      L118 208
+      L114 194
+      L107 180
+      L105 162
+      Z
+    "/>
+  </g>
+
+  <!-- Topographic lines -->
+  <g
+    clip-path="url(#innerClip)"
+    fill="none"
+    stroke="#5E85A8"
+    stroke-width="1.2"
+    opacity="0.35">
+
+    <path d="
+      M39 55
+      C60 35 91 29 116 42
+      C141 55 157 50 175 43
+      C193 36 211 40 223 56
+    "/>
+
+    <path d="
+      M35 68
+      C61 54 84 51 108 64
+      C132 77 152 81 173 69
+      C194 57 212 58 226 73
+    "/>
+
+    <path d="
+      M31 183
+      C53 165 74 161 98 174
+      C122 187 140 190 160 182
+      C180 174 202 174 226 187
+    "/>
+
+    <path d="
+      M27 197
+      C56 184 78 187 99 199
+      C120 211 143 211 163 201
+      C183 191 201 193 223 206
+    "/>
+
+    <path d="
+      M169 31
+      C159 49 162 62 173 74
+      C184 86 185 101 175 116
+      C165 131 163 146 172 162
+      C181 178 182 196 170 214
+    "/>
+  </g>
+
+  <!-- 9°N latitude -->
+  <path
+    d="M28 128H228"
+    stroke="#D6A33A"
+    stroke-width="2.5"
+    opacity="0.55"
+  />
+
+  <!-- Route through Panama -->
+  <path
+    d="
+      M128 218
+      C124 205 132 192 127 179
+      C122 166 134 154 128 142
+      C122 131 131 118 128 106
+      C125 95 129 84 128 72
+    "
+    fill="none"
+    stroke="#F0B83F"
+    stroke-width="7"
+    stroke-linecap="round"
+  />
+
+  <!-- Panama waypoint -->
+  <circle
+    cx="128"
+    cy="145"
+    r="10"
+    fill="#061525"
+    stroke="#F7F3EA"
+    stroke-width="5"
+  />
+
+  <circle
+    cx="128"
+    cy="145"
+    r="5"
+    fill="#D6A33A"
+  />
+
+  <!-- North arrow -->
+  <path
+    d="
+      M128 28
+      L111 66
+      L128 56
+      L145 66
+      Z
+    "
+    fill="#F0B83F"
+  />
+
+  <path
+    d="M128 56V84"
+    stroke="#F0B83F"
+    stroke-width="7"
+    stroke-linecap="round"
+  />
+
+  <circle
+    cx="128"
+    cy="86"
+    r="7"
+    fill="#061525"
+    stroke="#F0B83F"
+    stroke-width="4"
+  />
+
+  <!-- North marker -->
+  <text
+    x="128"
+    y="25"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="24"
+    font-weight="900"
+    fill="#F0B83F">
+    N
+  </text>
+
+  <!-- Main 9°N mark -->
+  <text
+    x="128"
+    y="132"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="78"
+    font-weight="900"
+    letter-spacing="-3"
+    fill="#F7F3EA">
+    9°N
+  </text>
+
+</svg>
