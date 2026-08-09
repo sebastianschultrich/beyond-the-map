@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 175">
+  <text x="0" y="72"
+        font-family="Arial Narrow,Arial,sans-serif"
+        font-size="68"
+        font-weight="900"
+        letter-spacing="3"
+        fill="#F7F3EA">BEYOND THE MAP</text>
+
+  <line x1="2" y1="108" x2="238" y2="108"
+        stroke="#D6A33A"
+        stroke-width="6"/>
+
+  <text x="0" y="154"
+        font-family="Arial,Helvetica,sans-serif"
+        font-size="24"
+        font-weight="800"
+        letter-spacing="3"
+        fill="#7FA0BA">EXPEDITION · SYSTEMS · JOURNAL</text>
+</svg>
