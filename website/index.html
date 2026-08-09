@@ -2,109 +2,852 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beyond the Map – Latitude Nine North. A long-term project about Expedition Risk Management, overland travel, preparation, systems and the road to Panama.">
+  <meta name="theme-color" content="#061525">
+
+  <title>Beyond the Map · Latitude Nine North</title>
+
   <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#202622">
-  <meta name="description" content="Beyond the Map – ein langfristiges Projekt über Expedition Risk Management, Overland-Reisen und Latitude Nine North.">
-  <meta name="robots" content="index,follow">
-  <meta property="og:title" content="Beyond the Map | Schultrich">
-  <meta property="og:description" content="Preparing for the road long before the first mile.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://schultrich.com/">
-  <title>Beyond the Map | Schultrich</title>
+
   <style>
     :root{
-      --ink:#202622; --paper:#f2eee6; --paper2:#e5dccb; --olive:#53604f;
-      --copper:#9b6743; --line:rgba(32,38,34,.18); --white:#fff;
-      --max:1120px;
+      --navy:#061525;
+      --blue:#0A2239;
+      --blue-2:#102D49;
+      --gold:#D6A33A;
+      --gold-2:#F0B83F;
+      --topo:#5E85A8;
+      --white:#F7F3EA;
+      --muted:#B8C4CF;
+      --line:rgba(247,243,234,.13);
+      --panel:rgba(255,255,255,.035);
+      --shadow:0 24px 80px rgba(0,0,0,.28);
+      --max:1180px;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
-    a{color:inherit}
-    .skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.7rem;z-index:99}
-    .wrap{width:min(calc(100% - 2rem),var(--max));margin-inline:auto}
-    header{position:absolute;inset:0 0 auto;z-index:2;padding:1.25rem 0;color:#fff}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    .brand{font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.84rem;text-decoration:none}
-    .navlinks{display:flex;gap:1.2rem;font-size:.9rem}.navlinks a{text-decoration:none;opacity:.86}.navlinks a:hover{opacity:1}
-    .hero{min-height:92svh;display:grid;align-items:end;position:relative;overflow:hidden;background:
-      linear-gradient(180deg,rgba(16,21,18,.28),rgba(16,21,18,.78)),
-      radial-gradient(circle at 74% 30%,rgba(197,151,91,.45),transparent 30%),
-      linear-gradient(135deg,#334137 0%,#1e2621 55%,#121713 100%);color:#fff}
-    .hero:before,.hero:after{content:"";position:absolute;inset:auto -10% 0;height:32%;background:var(--paper);clip-path:polygon(0 84%,18% 56%,35% 72%,53% 36%,73% 66%,100% 22%,100% 100%,0 100%);opacity:.95}
-    .hero:after{height:24%;background:#75806f;opacity:.35;transform:translateY(-34px);clip-path:polygon(0 100%,0 78%,18% 45%,38% 74%,56% 28%,76% 69%,100% 38%,100% 100%)}
-    .hero-inner{position:relative;z-index:1;padding:9rem 0 11rem;max-width:850px}
-    .kicker{display:inline-flex;gap:.6rem;align-items:center;text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:700;color:#dfd4c3}.kicker:before{content:"";width:42px;height:1px;background:currentColor}
-    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(3.7rem,10vw,8rem);line-height:.88;letter-spacing:-.055em;margin:1.2rem 0 1.5rem;font-weight:500;max-width:8ch}
-    .lede{font-size:clamp(1.1rem,2vw,1.45rem);max-width:620px;color:rgba(255,255,255,.82)}
-    .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.1rem;border:1px solid rgba(255,255,255,.32);text-decoration:none;font-weight:700;font-size:.9rem}.btn.primary{background:#fff;color:var(--ink);border-color:#fff}.btn:hover{transform:translateY(-1px)}
-    section{padding:6rem 0}.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:5rem;align-items:start}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:800;color:var(--copper)}
-    h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(2.2rem,5vw,4.5rem);line-height:1.04;letter-spacing:-.04em;margin:.65rem 0 1.2rem}.quote{font-family:Georgia,"Times New Roman",serif;font-size:1.45rem;border-left:2px solid var(--copper);padding-left:1.4rem;margin-top:3rem}
-    .cardgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.card{background:var(--paper);padding:2.1rem;min-height:260px}.num{font:700 .75rem/1 Inter,sans-serif;letter-spacing:.12em;color:var(--copper)}.card h3{font-family:Georgia,"Times New Roman",serif;font-size:1.7rem;font-weight:500;margin:3.5rem 0 .7rem}.card p{margin:0;color:#505851}
-    .dark{background:var(--ink);color:#fff}.dark .eyebrow{color:#d6b08e}.dark p{color:rgba(255,255,255,.72)}.status{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end}.status-list{border-top:1px solid rgba(255,255,255,.22)}.status-row{display:grid;grid-template-columns:28px 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.15)}.dot{width:8px;height:8px;border-radius:50%;background:#d6b08e;margin-top:.55rem}
-    .signup{background:var(--paper2)}.signup-box{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}.form{display:flex;gap:.6rem;flex-wrap:wrap}.form input{min-width:240px;flex:1;padding:1rem;border:1px solid var(--line);background:rgba(255,255,255,.6);font:inherit}.form button{padding:1rem 1.2rem;border:0;background:var(--ink);color:#fff;font:700 .9rem/1 Inter,sans-serif;cursor:pointer}.small{font-size:.78rem;color:#676e68;margin-top:.8rem}
-    footer{padding:2rem 0 3rem;border-top:1px solid var(--line)}.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem}.footlinks{display:flex;gap:1rem}.foot a{text-decoration:none}
-    dialog{max-width:680px;border:0;padding:0;background:var(--paper);color:var(--ink);box-shadow:0 24px 90px rgba(0,0,0,.3)}dialog::backdrop{background:rgba(10,12,10,.72)}.modal{padding:2rem}.close{float:right;border:0;background:none;font-size:1.5rem;cursor:pointer}
-    @media(max-width:800px){.navlinks{display:none}.intro,.status,.signup-box{grid-template-columns:1fr;gap:2.5rem}.cardgrid{grid-template-columns:1fr}.hero-inner{padding-bottom:9rem}section{padding:4rem 0}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover{transform:none}}
+    body{
+      margin:0;
+      color:var(--white);
+      background:
+        radial-gradient(circle at 22% 8%, rgba(94,133,168,.14), transparent 32%),
+        radial-gradient(circle at 82% 28%, rgba(214,163,58,.08), transparent 28%),
+        linear-gradient(180deg,var(--navy),#07192A 52%,#05111E);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img,svg{display:block;max-width:100%}
+    button,input{font:inherit}
+
+    .shell{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(16px);
+      background:rgba(6,21,37,.78);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:max-content;
+    }
+
+    .brand-mark{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      border:2px solid var(--gold);
+      display:grid;
+      place-items:center;
+      color:var(--gold-2);
+      font-weight:900;
+      font-size:.82rem;
+      letter-spacing:-.05em;
+      background:var(--blue);
+    }
+
+    .brand-copy strong{
+      display:block;
+      font-size:.86rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+
+    .brand-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.72rem;
+      margin-top:-2px;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      color:#D7DFE6;
+      font-size:.86rem;
+    }
+
+    .nav-links a{opacity:.86}
+    .nav-links a:hover{opacity:1;color:var(--gold-2)}
+
+    .hero{
+      min-height:calc(100vh - 72px);
+      display:grid;
+      align-items:center;
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      background:
+        linear-gradient(rgba(94,133,168,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94,133,168,.08) 1px, transparent 1px);
+      background-size:64px 64px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 88%);
+    }
+
+    .hero:after{
+      content:"9°N";
+      position:absolute;
+      right:-.03em;
+      bottom:-.23em;
+      z-index:-1;
+      font-weight:900;
+      letter-spacing:-.08em;
+      font-size:clamp(9rem,29vw,27rem);
+      line-height:1;
+      color:rgba(247,243,234,.018);
+      user-select:none;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.35fr .65fr;
+      align-items:center;
+      gap:72px;
+      padding:92px 0 86px;
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      text-transform:uppercase;
+      font-size:.74rem;
+      font-weight:800;
+      letter-spacing:.22em;
+      color:var(--gold-2);
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:38px;
+      height:1px;
+      background:var(--gold);
+    }
+
+    h1{
+      margin:24px 0 20px;
+      max-width:900px;
+      font-size:clamp(3.5rem,8vw,7.7rem);
+      line-height:.89;
+      letter-spacing:-.065em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    h1 span{
+      display:block;
+      color:transparent;
+      -webkit-text-stroke:1.4px rgba(247,243,234,.56);
+    }
+
+    .hero-lead{
+      max-width:690px;
+      color:#D4DDE5;
+      font-size:clamp(1.06rem,1.7vw,1.34rem);
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:34px;
+    }
+
+    .btn{
+      min-height:48px;
+      padding:0 20px;
+      border:1px solid transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--gold);
+      color:#111A22;
+    }
+
+    .btn-primary:hover{background:var(--gold-2);transform:translateY(-1px)}
+    .btn-ghost{border-color:rgba(247,243,234,.23);color:var(--white)}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold-2)}
+
+    .hero-card{
+      justify-self:end;
+      width:min(100%,360px);
+      aspect-ratio:1;
+      border:1px solid rgba(214,163,58,.22);
+      border-radius:50%;
+      padding:28px;
+      position:relative;
+      display:grid;
+      place-items:center;
+      box-shadow:var(--shadow);
+      background:
+        radial-gradient(circle at center,rgba(94,133,168,.12),transparent 62%),
+        rgba(4,16,29,.54);
+    }
+
+    .hero-card:before,
+    .hero-card:after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      inset:8%;
+      border:1px solid rgba(247,243,234,.07);
+    }
+
+    .hero-card:after{inset:22%}
+
+    .compass{
+      position:relative;
+      width:72%;
+      aspect-ratio:1;
+      border:8px solid var(--gold);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:var(--white);
+      font-size:clamp(2.7rem,5vw,4.8rem);
+      font-weight:900;
+      letter-spacing:-.07em;
+      background:
+        linear-gradient(rgba(94,133,168,.14) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(94,133,168,.14) 1px,transparent 1px),
+        var(--blue);
+      background-size:24px 24px;
+      box-shadow:0 0 0 2px rgba(240,194,90,.36) inset;
+    }
+
+    .compass:before{
+      content:"N";
+      position:absolute;
+      top:-42px;
+      color:var(--gold-2);
+      font-size:1rem;
+      letter-spacing:.08em;
+    }
+
+    .compass:after{
+      content:"";
+      position:absolute;
+      width:6px;
+      height:112%;
+      background:linear-gradient(var(--gold-2),var(--gold),rgba(214,163,58,.34));
+      clip-path:polygon(50% 0,100% 12%,72% 12%,72% 100%,28% 100%,28% 12%,0 12%);
+      z-index:0;
+    }
+
+    .compass span{position:relative;z-index:1;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+
+    section{padding:110px 0;border-bottom:1px solid var(--line)}
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.7fr 1.3fr;
+      gap:60px;
+      margin-bottom:56px;
+      align-items:start;
+    }
+
+    .kicker{
+      color:var(--gold-2);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      font-weight:900;
+    }
+
+    h2{
+      margin:9px 0 0;
+      font-size:clamp(2.3rem,4.8vw,4.8rem);
+      letter-spacing:-.05em;
+      line-height:.98;
+    }
+
+    .section-intro{
+      font-size:1.14rem;
+      color:#CCD6DF;
+      max-width:690px;
+      margin:4px 0 0;
+    }
+
+    .quote{
+      margin-top:28px;
+      border-left:2px solid var(--gold);
+      padding-left:18px;
+      color:var(--white);
+      font-size:1.05rem;
+    }
+
+    .story-grid,
+    .risk-grid,
+    .logbook-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      padding:28px;
+      min-height:220px;
+      transition:.22s ease;
+    }
+
+    .card:hover{
+      border-color:rgba(214,163,58,.38);
+      background:rgba(255,255,255,.05);
+      transform:translateY(-3px);
+    }
+
+    .card-number{
+      color:var(--gold);
+      font-size:.72rem;
+      font-weight:900;
+      letter-spacing:.14em;
+    }
+
+    .card h3{
+      margin:25px 0 10px;
+      font-size:1.22rem;
+      letter-spacing:-.02em;
+    }
+
+    .card p{
+      margin:0;
+      color:#AFBECA;
+      font-size:.95rem;
+    }
+
+    .latitude{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .latitude .route-line{
+      margin-top:50px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      position:relative;
+      gap:0;
+    }
+
+    .latitude .route-line:before{
+      content:"";
+      position:absolute;
+      left:5%;
+      right:5%;
+      top:17px;
+      height:1px;
+      background:linear-gradient(90deg,var(--topo),var(--gold),var(--gold-2));
+    }
+
+    .waypoint{
+      position:relative;
+      padding-top:46px;
+      color:#C2CED8;
+      font-size:.84rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .waypoint:before{
+      content:"";
+      position:absolute;
+      top:10px;
+      left:0;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:var(--navy);
+      border:3px solid var(--gold);
+      z-index:2;
+    }
+
+    .waypoint:last-child:before{background:var(--gold)}
+
+    .risk-grid{grid-template-columns:repeat(4,1fr)}
+    .risk-grid .card{min-height:180px}
+
+    .status{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .status-panel{
+      border:1px solid var(--line);
+      padding:26px 28px;
+      background:linear-gradient(135deg,rgba(94,133,168,.07),rgba(255,255,255,.018));
+    }
+
+    .status-panel strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.78rem;
+      color:var(--gold-2);
+      margin-bottom:9px;
+    }
+
+    .status-panel p{margin:0;color:#B8C4CF}
+
+    .logbook-grid .card{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:270px;
+    }
+
+    .tag{
+      display:inline-flex;
+      width:max-content;
+      padding:5px 8px;
+      border:1px solid rgba(214,163,58,.34);
+      color:var(--gold-2);
+      font-size:.67rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .coming{
+      margin-top:38px;
+      padding:22px 24px;
+      border:1px dashed rgba(247,243,234,.18);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      color:#B9C5CF;
+    }
+
+    .coming strong{color:var(--white)}
+
+    footer{padding:62px 0 48px}
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:40px;
+      align-items:end;
+    }
+
+    .footer-title{
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:1rem;
+    }
+
+    .footer-sub{
+      margin-top:8px;
+      color:#8EA0AF;
+      font-size:.88rem;
+    }
+
+    .footer-links{
+      display:flex;
+      justify-content:flex-end;
+      gap:22px;
+      flex-wrap:wrap;
+      color:#AFBBC5;
+      font-size:.84rem;
+    }
+
+    .copyright{
+      margin-top:36px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+      color:#768A9A;
+      font-size:.75rem;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero-grid,.section-head,.footer-grid{grid-template-columns:1fr}
+      .hero-grid{gap:42px}
+      .hero-card{justify-self:start;width:300px}
+      .story-grid,.logbook-grid{grid-template-columns:1fr 1fr}
+      .risk-grid{grid-template-columns:1fr 1fr}
+      .section-head{gap:20px}
+      .footer-links{justify-content:flex-start}
+    }
+
+    @media(max-width:620px){
+      .shell{width:min(calc(100% - 28px),var(--max))}
+      .hero-grid{padding:68px 0}
+      h1{font-size:3.6rem}
+      .hero-card{width:230px}
+      .story-grid,.logbook-grid,.risk-grid,.status{grid-template-columns:1fr}
+      .latitude .route-line{grid-template-columns:1fr;gap:18px}
+      .latitude .route-line:before{
+        left:6px;right:auto;top:0;bottom:0;width:1px;height:auto;
+        background:linear-gradient(var(--topo),var(--gold),var(--gold-2));
+      }
+      .waypoint{padding:0 0 0 36px;min-height:44px}
+      .waypoint:before{left:0;top:3px}
+      section{padding:82px 0}
+      .coming{align-items:flex-start;flex-direction:column}
+    }
   </style>
 </head>
+
 <body>
-<a class="skip" href="#content">Zum Inhalt</a>
-<header><div class="wrap"><nav aria-label="Hauptnavigation"><a class="brand" href="#">Schultrich.com</a><div class="navlinks"><a href="#project">Projekt</a><a href="#status">Status</a><a href="#logbook">The Logbook</a></div></nav></div></header>
-<main id="content">
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <div class="kicker">A long-term expedition project</div>
-      <h1>Beyond the Map</h1>
-      <p class="lede">Preparing for the road long before the first mile. Ein persönliches Journal über Expedition Risk Management, Overland-Planung und den langen Weg zu Latitude Nine North.</p>
-      <div class="actions"><a class="btn primary" href="#project">Das Projekt entdecken</a><a class="btn" href="#logbook">The Logbook</a></div>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Beyond the Map – Startseite">
+        <div class="brand-mark">9°N</div>
+        <div class="brand-copy">
+          <strong>Beyond the Map</strong>
+          <span>Latitude Nine North</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#beyond">Beyond the Map</a>
+        <a href="#latitude">Latitude 9°N</a>
+        <a href="#risk">Risk Management</a>
+        <a href="#logbook">The Logbook</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section id="project"><div class="wrap intro">
-    <div><div class="eyebrow">Die Idee</div><h2>Die Reise ist nicht das Produkt.</h2><p>Sie ist der glaubwürdige Beweis für Vorbereitung, Erfahrung und Entscheidungen unter realen Bedingungen. Beyond the Map verbindet persönliche Entwicklung mit Fahrzeugtechnik, Logistik und einem praxisnahen Verständnis von Risiko.</p><p class="quote">Every great expedition begins years before the engine is running.</p></div>
-    <div><p><strong>Latitude Nine North</strong> ist das langfristige Lebensprojekt: von Europa über die Panamericana bis nach Panama.</p><p>Diese Seite wächst Schritt für Schritt zu einem digitalen Journal, einer Wissensbibliothek und später einer Plattform für Consulting, Audits und Gutachten.</p></div>
-  </div></section>
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">Long-term expedition platform</div>
 
-  <section style="padding-top:0"><div class="wrap cardgrid">
-    <article class="card"><div class="num">01</div><h3>Latitude Nine North</h3><p>Panamericana, Panama und der Aufbau der Expedition lange vor der Abfahrt.</p></article>
-    <article class="card"><div class="num">02</div><h3>Expedition Risk Management</h3><p>Risiken erkennen, Systeme entwickeln und Entscheidungen praxisnah vorbereiten.</p></article>
-    <article class="card"><div class="num">03</div><h3>The Workshop</h3><p>Fahrzeugkonzepte, Technik, Ladungssicherung, Ausrüstung und Lessons Learned.</p></article>
-  </div></section>
+          <h1>
+            Beyond
+            <span>the Map</span>
+          </h1>
 
-  <section class="dark" id="status"><div class="wrap status">
-    <div><div class="eyebrow">Current status</div><h2>Building the platform.</h2><p>Kein künstlicher Countdown. Das Projekt wächst in seinem eigenen Tempo – mit Substanz statt bloßer Reichweite.</p></div>
-    <div class="status-list">
-      <div class="status-row"><span class="dot"></span><div><strong>Brand foundation</strong><br><span>Beyond the Map & Latitude Nine North</span></div></div>
-      <div class="status-row"><span class="dot"></span><div><strong>Knowledge base</strong><br><span>Fahrzeug, Logistik, Sicherheit und Panama</span></div></div>
-      <div class="status-row"><span class="dot"></span><div><strong>Expedition platform</strong><br><span>Website, Journal und spätere Library</span></div></div>
+          <p class="hero-lead">
+            Preparing for the road long before the first mile.
+            A personal long-term project connecting overland travel,
+            Expedition Risk Management, systems thinking and the route toward Latitude Nine North.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#latitude">Explore the project</a>
+            <a class="btn btn-ghost" href="#risk">Expedition Risk Management</a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <div class="compass"><span>9°N</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beyond">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">01 · Beyond the Map</div>
+            <h2>The journey starts before departure.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              Beyond the Map is not intended to be a conventional travel blog.
+              It documents how a long expedition is built: the decisions, systems,
+              technical preparation, risks, mistakes and lessons that exist long before the road itself.
+            </p>
+
+            <div class="quote">
+              The expedition is not the product. It is the proof of the preparation behind it.
+            </div>
+          </div>
+        </div>
+
+        <div class="story-grid">
+          <article class="card">
+            <div class="card-number">PREPARE</div>
+            <h3>Preparation as part of the story</h3>
+            <p>
+              Vehicle choices, equipment, training, route logic, documentation and contingency planning
+              become part of the expedition rather than invisible work done beforehand.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">UNDERSTAND</div>
+            <h3>Systems instead of checklists</h3>
+            <p>
+              Risk, mobility, logistics and human factors interact. The aim is not simply to carry more gear,
+              but to make better decisions with fewer weak points.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">DOCUMENT</div>
+            <h3>Knowledge that remains useful</h3>
+            <p>
+              Field notes, technical decisions and lessons learned form a growing knowledge base for future
+              expeditions, consulting, audits and practical training.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="latitude" class="latitude">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">02 · Latitude Nine North</div>
+            <h2>A direction, not just a coordinate.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              Latitude Nine North is the long-term expedition project within Beyond the Map.
+              The Panamericana provides the route. Panama provides the geographic horizon.
+              The years of preparation provide the substance.
+            </p>
+          </div>
+        </div>
+
+        <div class="route-line" aria-label="Latitude Nine North project path">
+          <div class="waypoint">Foundation</div>
+          <div class="waypoint">Preparation</div>
+          <div class="waypoint">Panamericana</div>
+          <div class="waypoint">Latitude 9°N</div>
+        </div>
+
+        <div class="status">
+          <div class="status-panel">
+            <strong>Current phase</strong>
+            <p>
+              Building the platform, documenting the planning process and developing the technical
+              and professional foundation behind the expedition.
+            </p>
+          </div>
+
+          <div class="status-panel">
+            <strong>Long-term focus</strong>
+            <p>
+              Overland mobility, expedition systems, Panama, practical risk management and
+              a body of knowledge built through preparation and real-world experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="risk">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">03 · Expedition Risk Management</div>
+            <h2>Preparation with consequence.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              Expedition Risk Management is the professional axis of Beyond the Map.
+              It connects operational planning with practical mobility, logistics, vehicle systems,
+              route decisions and human factors.
+            </p>
+          </div>
+        </div>
+
+        <div class="risk-grid">
+          <article class="card">
+            <div class="card-number">01</div>
+            <h3>Risk</h3>
+            <p>Threats, exposure, consequences and proportionate mitigation.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">02</div>
+            <h3>Mobility</h3>
+            <p>Vehicle capability, limitations, recovery, maintenance and redundancy.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">03</div>
+            <h3>Logistics</h3>
+            <p>Load, supply, documentation, spares, communications and sustainment.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">04</div>
+            <h3>Human Factors</h3>
+            <p>Decision-making, fatigue, skills, routines, judgement and adaptability.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">05</div>
+            <h3>Route</h3>
+            <p>Borders, terrain, infrastructure, seasonal conditions and fallback options.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">06</div>
+            <h3>Contingency</h3>
+            <p>Failure modes, communications, evacuation logic and recovery planning.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">07</div>
+            <h3>Audit</h3>
+            <p>Structured review of systems, procedures, compliance and practical weaknesses.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">08</div>
+            <h3>Lessons Learned</h3>
+            <p>Turning experience, mistakes and evidence into better future decisions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="logbook">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">04 · The Logbook</div>
+            <h2>Notes from the road before the road.</h2>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              The Logbook will become the publishing layer of Beyond the Map:
+              personal enough to remain human, structured enough to remain useful.
+            </p>
+          </div>
+        </div>
+
+        <div class="logbook-grid">
+          <article class="card">
+            <div>
+              <span class="tag">Field Notes</span>
+              <h3>Preparation, travel and observation</h3>
+              <p>
+                Shorter personal entries about decisions, training, test trips,
+                equipment, places and what changes along the way.
+              </p>
+            </div>
+            <div class="card-number">PERSONAL / PRACTICAL</div>
+          </article>
+
+          <article class="card">
+            <div>
+              <span class="tag">Risk & Systems</span>
+              <h3>Expedition Risk Management</h3>
+              <p>
+                Deeper articles on planning, systems, vehicle capability,
+                logistics, failure modes and practical risk reduction.
+              </p>
+            </div>
+            <div class="card-number">PROFESSIONAL / ANALYTICAL</div>
+          </article>
+
+          <article class="card">
+            <div>
+              <span class="tag">Latitude 9°N</span>
+              <h3>The long route toward Panama</h3>
+              <p>
+                Vehicle development, the Panamericana, geographic research
+                and the long-term transition from project to expedition.
+              </p>
+            </div>
+            <div class="card-number">EXPEDITION / LONG-TERM</div>
+          </article>
+        </div>
+
+        <div class="coming">
+          <div>
+            <strong>The Logbook is being prepared.</strong><br>
+            Ghost publishing and newsletter integration will follow after the brand and site structure are settled.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Beyond the Map</div>
+          <div class="footer-sub">
+            Latitude Nine North · Expedition Risk Management · The Logbook
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#beyond">About</a>
+          <a href="#latitude">Latitude 9°N</a>
+          <a href="#risk">Risk Management</a>
+         <div class="copyright">
+        <span>© 2026 Sebastian Schultrich</span>
+        <span>schultrich.com</span>
+      </div>
     </div>
-  </div></section>
-
-  <section class="signup" id="logbook"><div class="wrap signup-box">
-    <div><div class="eyebrow">The Logbook</div><h2>Notes from the road ahead.</h2><p>Persönliche Einblicke, Entscheidungen und Erkenntnisse aus der Vorbereitung.</p></div>
-    <div>
-      <form class="form" id="interest-form"><input id="email" type="email" autocomplete="email" placeholder="deine@email.de" required aria-label="E-Mail-Adresse"><button type="submit">Interesse vormerken</button></form>
-      <p class="small">Aktuell wird noch keine Adresse gespeichert. Der Button öffnet lediglich eine vorbereitete E-Mail an dich.</p>
-    </div>
-  </div></section>
-</main>
-<footer><div class="wrap foot"><span>© <span id="year"></span> Sebastian Schultrich · Beyond the Map</span><div class="footlinks"><a href="#" data-modal="imprint">Impressum</a><a href="#" data-modal="privacy">Datenschutz</a></div></div></footer>
-
-<dialog id="imprint"><div class="modal"><button class="close" aria-label="Schließen">×</button><h2>Impressum</h2><p><strong>Bitte vor Veröffentlichung ergänzen:</strong></p><p>Sebastian Schultrich<br>[Bäckerstraße 3a]<br>[56727 Mayen]<br>Deutschland</p><p>E-Mail: <a href="mailto:hello@schultrich.com">hello@schultrich.com</a></p></div></dialog>
-<dialog id="privacy"><div class="modal"><button class="close" aria-label="Schließen">×</button><h2>Datenschutz</h2><p>Diese statische Landingpage setzt selbst keine Cookies ein und verwendet keine externen Schriftarten, Tracking-Dienste oder eingebetteten Medien.</p><p>Beim Aufruf verarbeitet der Hostinganbieter technisch erforderliche Verbindungsdaten. Bitte ergänze vor Veröffentlichung die vollständigen, auf deinen konkreten Betrieb abgestimmten Datenschutzhinweise.</p><p>Das Formular speichert keine Daten; es öffnet lediglich dein lokales E-Mail-Programm.</p></div></dialog>
-<script>
-  document.getElementById('year').textContent=new Date().getFullYear();
-  document.querySelectorAll('[data-modal]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.getElementById(a.dataset.modal).showModal()}));
-  document.querySelectorAll('dialog .close').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
-  document.getElementById('interest-form').addEventListener('submit',e=>{
-    e.preventDefault(); const email=document.getElementById('email').value.trim();
-    const subject=encodeURIComponent('Interesse an The Logbook');
-    const body=encodeURIComponent('Hallo Sebastian,\n\nich möchte über den Start von The Logbook informiert werden.\n\nMeine E-Mail-Adresse: '+email+'\n');
-    window.location.href='mailto:hello@schultrich.com?subject='+subject+'&body='+body;
-  });
-</script>
+  </footer>
 </body>
 </html>
